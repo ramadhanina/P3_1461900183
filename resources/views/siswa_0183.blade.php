@@ -39,9 +39,6 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{url('/datasiswa')}}">Data Siswa</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('/dataguru')}}">Data Guru</a>
-        </li>
       </ul>
     </div>
   </div>
@@ -55,6 +52,7 @@
                     <th style="text-align:center">No</th>
                     <th style="text-align:center">Nama Siswa</th>
                     <th style="text-align:center">Alamat</th>
+                    <th style="text-align:center">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -65,6 +63,14 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $siswa->nama}}</td>
                     <td>{{ $siswa->alamat}}</td>
+                    <td>
+                    <a href="{{url('siswa/' . $siswa->id . '/edit')}}" class="btn btn-dark">Edit</a>
+                      | <form action="{{ url('siswa/' . $siswa->id)}}" method="post">
+                        @csrf
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-dark">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
@@ -73,7 +79,6 @@
     </div>
     <div class="d-grid gap-2 gap-2 col-6 mx-auto" style="padding-top:50px;padding-bottom:50px">
        <a href="{{url('siswa/create')}}" class="btn btn-dark">Tambah Data</a>
-       <a href="{{url('siswa/' . $siswa->id . '/edit')}}" class="btn btn-dark">Edit</a>
     </div>
   </body>
 </html>
