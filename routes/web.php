@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\siswacontroller;
+use App\Http\Controllers\gurucontroller;
+use App\Http\Controllers\kelascontroller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +21,5 @@ Route::get('/', function () {
 });
 
 route::resource('siswa', siswacontroller::class);
+route::resource('guru', gurucontroller::class);
+route::get('/kelas', [kelascontroller::class,'index']);

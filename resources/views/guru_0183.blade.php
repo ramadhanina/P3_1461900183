@@ -24,7 +24,8 @@
             padding: 10px;
         }
         tr:nth-child(even){
-            background-color: #f2f2f2;
+            backgroun
+            d-color: #f2f2f2;
         }
     </style>
   </head>
@@ -43,23 +44,48 @@
           <a class="nav-link active" aria-current="page" href="{{url('/guru')}}">Data Guru</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('/guru/kelas')}}">Data Kelas</a>
+          <a class="nav-link active" aria-current="page" href="{{url('/kelas')}}">Data Kelas</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
   <body>
-  <form action="{{ url('siswa/'.$siswa->id) }}" method="post">
-    @csrf
-    <input type="hidden" name="_method" value="patch">
-    NAMA : <input type="text" name="nama" value="{{ $siswa->nama}}">
-    ALAMAT : <input type="text" name="alamat" value="{{ $siswa->alamat}}">
-    <button type="submit">Simpan</button>
-  </form>
+  <h1 style="text-align:center; padding-top:10px">DATA GURU</h1>
+    <div style="overflow-x: auto">
+        <table>
+            <thead>
+                <tr>
+                    <th style="text-align:center">No</th>
+                    <th style="text-align:center">Nama</th>
+                    <th style="text-align:center">Mata Pelajaran</th>
+                    <th style="text-align:center">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tbody>
+                <?php $no=1 ?>
+                @foreach ($guru as $guru)
+                <tr>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $guru->nama}}</td>
+                    <td>{{ $guru->mengajar}}</td>
+                    <td>
+                      <form action="{{ url('guru/' . $guru->id)}}" method="post" style="display:inline-block;">
+                        @csrf
+                        <a href="{{url('guru/' . $guru->id . '/edit')}}" class="btn btn-warning">Edit</a>
+                        <input type="hidden" name="_method" value="delete">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+            </tbody>
+        </table>    
+    </div>
     <div class="d-grid gap-2 gap-2 col-6 mx-auto" style="padding-top:50px;padding-bottom:50px">
-        <!--<a href="{{url('')}}" class="btn btn-dark">Cek Detail Data Siswa Laki-Laki</a>
-        <a href="{{url('')}}" class="btn btn-dark">Cek Detail Data Siswa Perempuan</a>-->
+       <a href="{{url('guru/create')}}" class="btn btn-dark">Tambah Data</a>
     </div>
   </body>
 </html>

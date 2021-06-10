@@ -50,11 +50,10 @@
   </div>
 </nav>
   <body>
-  <form action="{{ url('siswa/'.$siswa->id) }}" method="post">
+  <form action="{{ route('guru.store') }}" method="post">
     @csrf
-    <input type="hidden" name="_method" value="patch">
-    NAMA : <input type="text" name="nama" value="{{ $siswa->nama}}">
-    ALAMAT : <input type="text" name="alamat" value="{{ $siswa->alamat}}">
+    NAMA : <input type="text" name="nama">
+    MATA PELAJARAN : <input type="text" name="mengajar">
     <button type="submit">Simpan</button>
   </form>
     <div class="d-grid gap-2 gap-2 col-6 mx-auto" style="padding-top:50px;padding-bottom:50px">

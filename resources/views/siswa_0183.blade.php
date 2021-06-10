@@ -24,7 +24,8 @@
             padding: 10px;
         }
         tr:nth-child(even){
-            background-color: #f2f2f2;
+            backgroun
+            d-color: #f2f2f2;
         }
     </style>
   </head>
@@ -37,7 +38,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{{url('/datasiswa')}}">Data Siswa</a>
+          <a class="nav-link active" aria-current="page" href="{{url('/siswa')}}">Data Siswa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url('/guru')}}">Data Guru</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url('/kelas')}}">Data Kelas</a>
         </li>
       </ul>
     </div>
@@ -64,11 +71,11 @@
                     <td>{{ $siswa->nama}}</td>
                     <td>{{ $siswa->alamat}}</td>
                     <td>
-                    <a href="{{url('siswa/' . $siswa->id . '/edit')}}" class="btn btn-dark">Edit</a>
-                      | <form action="{{ url('siswa/' . $siswa->id)}}" method="post">
+                      <form action="{{ url('siswa/' . $siswa->id)}}" method="post" style="display:inline-block;">
                         @csrf
+                        <a href="{{url('siswa/' . $siswa->id . '/edit')}}" class="btn btn-warning">Edit</a>
                         <input type="hidden" name="_method" value="delete">
-                        <button type="submit" class="btn btn-dark">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </td>
                 </tr>
